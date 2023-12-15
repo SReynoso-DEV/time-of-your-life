@@ -7,4 +7,5 @@ public class ClockProps {
   public int ClockFontSize {get ; set;} = 48;
   public bool BlinkColons {get; set;} = true;
   public string FontColor {get; set;} = "black";
+  public string TitleText { get; set; }
 }

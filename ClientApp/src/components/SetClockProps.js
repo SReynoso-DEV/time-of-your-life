@@ -8,9 +8,19 @@ function SetClockProps(props) {
   const [blinkColons, setBlinkColons] = useState(clockProps.blinkColons)
   const [presets, setPresets] = useState([])
   const [loading, setLoading] = useState(true)
+  const [titleText, setTitleText] = useState(clockProps.titleText)
+
+
+
+  // error variables
+  // I create each variable for each input text in case we want independent validations and error messages
+  const [fontFamilyError, setFontFamilyError] = useState('')
+  const [titleTextError, setTitleTextError] = useState('')
+  const [fontColorError, setFontColorError] = useState('')
+
 
   useEffect(() => {
-    ;(async () => {
+    ; (async () => {
       const response = await fetch('clock/presets')
       const data = await response.json()
       setPresets(data)
@@ -24,14 +34,101 @@ function SetClockProps(props) {
     props.titleFontSize = document.getElementById('titleFontSize').value
     props.clockFontSize = document.getElementById('clockFontSize').value
     props.fontColor = document.getElementById('fontColor').value
+    props.titleText = document.getElementById('titleText').value
     props.blinkColons = document.getElementById('blinkColons').checked
     return props
   }
 
-  const setClockProps = () => {
-    const setProps = getProps()
-    props.setClockProps(setProps)
+
+  const validateInputFields = () => {
+    let validate = true
+    if (fontFamilyError && fontFamilyError.trim().length >= 1) {
+      validate = false
+    }
+
+    if (titleTextError && titleTextError.trim().length >= 1) {
+      validate = false
+    }
+
+    if (fontColorError && fontColorError.trim().length >= 1) {
+      validate = false
+    }
+
+    return validate
+
   }
+  const inputOnKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      setClockProps()
+    }
+  }
+
+  const setClockProps = () => {
+    if (validateInputFields() === true) {
+      const setProps = getProps()
+      props.setClockProps(setProps)
+      return setProps
+    }
+    else {
+      alert("fix input field errors")
+      return null
+    }
+  }
+
+  const validateTitleText = () => {
+    if (!clockProps.titleText || clockProps.titleText.trim().length === 0) {
+      setTitleTextError('* titleText field is required')
+    }
+    else {
+      setTitleTextError(null)
+    }
+  }
+
+  const setTitleTextUI = () => {
+
+    let val = document.getElementById('titleText').value
+    setTitleText(val)
+    clockProps.titleText = val
+    validateTitleText();
+
+
+  }
+
+  const validateFontFamily = () => {
+    if (!clockProps.fontFamily || clockProps.fontFamily.trim().length === 0) {
+        setFontFamilyError('* fontFamily field is required')
+    }
+    else {
+        setFontFamilyError(null)
+    }
+}
+
+const setFontFamilyUI = () => {
+
+    let val = document.getElementById('fontFamily').value
+    setFontFamily(val)
+    clockProps.fontFamily = val
+    validateFontFamily()
+}
+
+
+const validateFontColor = () => {
+    if (!clockProps.fontColor || clockProps.fontColor.trim().length === 0) {
+        setFontColorError('* fontColor field is required')
+    }
+    else {
+        setFontColorError(null)
+    }
+}
+
+
+const setFontColorUI = (e) => {
+    let val = document.getElementById('fontColor').value
+    setFontColor(val)
+    clockProps.fontColor = val
+
+    validateFontColor()
+}
 
   const fontSizeOptions = (selctedSize) => {
     return clockProps.availableFontSizes.map((size) => {
@@ -41,16 +138,6 @@ function SetClockProps(props) {
       }
       return option
     })
-  }
-
-  const setFontFamilyUI = () => {
-    setFontFamily(document.getElementById('fontFamily').value)
-    clockProps.fontFamily = document.getElementById('fontFamily').value
-  }
-
-  const setFontColurUI = (e) => {
-    setFontColor(document.getElementById('fontColor').value)
-    clockProps.fontColor = document.getElementById('fontColor').value
   }
 
   const setBlinkColonsUI = () => {
@@ -115,8 +202,33 @@ function SetClockProps(props) {
                 id="fontFamily"
                 value={fontFamily}
                 onChange={setFontFamilyUI}
+                onKeyDown={inputOnKeyDown}
               />
               <button onClick={setClockProps}>✓</button>
+            </div>
+            <div style={{
+              color: 'red'
+            }}>
+              {fontFamilyError}
+            </div>
+          </div>
+          <div>
+            <div>Title Text</div>
+            <div>
+              <input
+                id="titleText"
+                value={titleText}
+                onChange={setTitleTextUI}
+                onKeyDown={inputOnKeyDown}
+              />
+              <button onClick={setClockProps}>✓</button>
+              <div>
+                <div style={{
+                  color: 'red'
+                }}>
+                  {titleTextError}
+                </div>
+              </div>
             </div>
           </div>
           <div>
@@ -141,9 +253,17 @@ function SetClockProps(props) {
               <input
                 id="fontColor"
                 value={fontColor}
-                onChange={(e) => setFontColurUI(e)}
+                onChange={(e) => setFontColorUI(e)}
+                onKeyDown={inputOnKeyDown}
               />
               <button onClick={setClockProps}>✓</button>
+            </div>
+            <div>
+              <div style={{
+                color: 'red'
+              }}>
+                {fontColorError}
+              </div>
             </div>
           </div>
           <div>
