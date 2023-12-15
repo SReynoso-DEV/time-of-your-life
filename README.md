@@ -45,37 +45,37 @@ Changes to the React Client Side SPA, will be reflected in the UI in a hot load 
 
 #### Client
 
-- [ ] Make the clock `Set Clock Props` panel expandable and collapsible
-- [ ] Make the font size selection a slider control
-- [ ] Make the colors of the title and the clock different color values
-- [ ] Save the presets to the server at this endpoint:
+- [X] Make the clock `Set Clock Props` panel expandable and collapsible
+- [X] Make the font size selection a slider control
+- [X] Make the colors of the title and the clock different color values
+- [X] Save the presets to the server at this endpoint:
   `POST: https://localhost:7154/clock/presets`
-- [ ] Select a preset from the list saved on the server to replace the current values and update the clock
+- [X] Select a preset from the list saved on the server to replace the current values and update the clock
 - [ ] Add unit tests
 
 #### Server
 
-- [ ] Return a preset by the title ID
-- [ ] Add the ability to update existing presets with changes in values
+- [X] Return a preset by the title ID
+- [X] Add the ability to update existing presets with changes in values
 - [ ] Add unit tests
-- [ ] Add `ClockController` logging
+- [X] Add `ClockController` logging
 
 ### Harder
 
 #### Client
 
 - [ ] Add a color picker to select the font colors for multiple colors
-- [ ] Add the ability to print the time out in text, i.e. "1:32 PM" would be printed out as "one thirty two PM"
+- [X] Add the ability to print the time out in text, i.e. "1:32 PM" would be printed out as "one thirty two PM"
 - [ ] Add an alarms control/presets
 - [ ] Add a testing results output report
-- [ ] Add time zone to the preset and/or be able display multiple clocks/presets at the same time
+- [X] Add time zone to the preset and/or be able display multiple clocks/presets at the same time
 
 #### Server
 
 - [X] Implement a [sqlite] database storage layer
 - [ ] Save alarms and populate the alarms on the clock
 - [ ] Add a testing results output report
-- [ ] Add time zone to the preset and/or be able display multiple clocks/presets at the same time
+- [X] Add time zone to the preset and/or be able display multiple clocks/presets at the same time
 
 <!-- links -->
 

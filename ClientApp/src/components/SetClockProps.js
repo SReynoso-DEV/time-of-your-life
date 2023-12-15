@@ -187,6 +187,34 @@ function SetClockProps(props) {
         validateClockFontColor()
     }
 
+    const sendSelectedPreset = (p) => {
+        let setProps = new ClockProps()
+
+        setProps.id = p.id
+        setProps.fontFamily = p.fontFamily
+        setProps.titleText = p.titleText
+        setProps.fontColor = p.fontColor
+        setProps.clockFontColor = p.clockFontColor
+        setProps.titleFontSize = p.titleFontSize
+        setProps.clockFontSize = p.clockFontSize
+        setProps.blinkColons = p.blinkColons
+        setProps.timeZone = p.timeZone
+
+        setFontFamily(p.fontFamily)
+        setFontColor(p.fontColor)
+        setBlinkColons(p.blinkColons)
+        setTitleText(p.titleText)
+        setClockFontColor(p.clockFontColor)
+        setTimeZone(p.timeZone)
+        setId(p.id)
+
+        document.getElementById('titleFontSize').value = p.titleFontSize
+        document.getElementById('clockFontSize').value = p.clockFontSize
+
+
+        props.setClockProps(setProps)
+    }
+
   const presetsDisplay = (() => {
     console.log(presets)
     return loading ? (
@@ -199,7 +227,7 @@ function SetClockProps(props) {
             <li>
                 Preset {i + 1}:{' '}
                 {`Id: ${p.id},  Font: ${p.fontFamily},  Title Text: ${p.titleText}, Title Color: ${p.fontColor}, Clock Color: ${p.clockFontColor}, Title Size: ${p.titleFontSize}, Clock Size: ${p.clockFontSize}, Blink Column: ${p.blinkColons}, Time Zone: ${p.timeZone}`}
-                
+                <button onClick={() => sendSelectedPreset(p)}>✓</button>   
             </li>
         ))}
       </ul>
@@ -355,9 +383,12 @@ function SetClockProps(props) {
                       <div>
                           <div>Title Font Size</div>
                           <div>
-                              <select id="titleFontSize" onChange={setClockProps}>
-                                  {fontSizeOptions(clockProps.titleFontSize)}
-                              </select>
+                              <input type="range"
+                                  id="titleFontSize"
+                                  min={10}
+                                  max={50}
+                                  step={5}
+                                  onChange={setClockProps} />
                           </div>
                       </div>
                       <div>
