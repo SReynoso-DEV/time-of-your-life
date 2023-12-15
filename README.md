@@ -23,23 +23,23 @@ Changes to the React Client Side SPA, will be reflected in the UI in a hot load 
 
 #### Client
 
-- [ ] Make the title of the clock customizable
+- [X] Make the title of the clock customizable
 
-- [ ] Make a return character in the text settings fields save the field property value
+- [X] Make a return character in the text settings fields save the field property value
 
-- [ ] Add validation to the text input fields
+- [X] Add validation to the text input fields
 
-- [ ] Display the list of the presets saved on the server served from this endpoint:
+- [X] Display the list of the presets saved on the server served from this endpoint:
 
   `GET: https://localhost:7154/clock/presets`
 
-- [ ] Add sync to the server time
+- [X] Add sync to the server time
 
 #### Server
 
-- [ ] Add preset save validation
-- [ ] Add a unique identifier for a preset either an auto number value or a GUID
-- [ ] Add sync to the server time
+- [X] Add preset save validation
+- [X] Add a unique identifier for a preset either an auto number value or a GUID
+- [X] Add sync to the server time
 
 ### Medium-er
 
@@ -72,7 +72,7 @@ Changes to the React Client Side SPA, will be reflected in the UI in a hot load 
 
 #### Server
 
-- [ ] Implement a [sqlite] database storage layer
+- [X] Implement a [sqlite] database storage layer
 - [ ] Save alarms and populate the alarms on the clock
 - [ ] Add a testing results output report
 - [ ] Add time zone to the preset and/or be able display multiple clocks/presets at the same time

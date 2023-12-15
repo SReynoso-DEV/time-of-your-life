@@ -1,11 +1,28 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace time.Controllers;
 
 public class ClockProps {
-  public string FontFamily {get; set;} = "courier";
+  public Guid? Id { get; set; }
+  
+  [Required]
+  public string FontFamily {get; set;} = "courier";    
   public int[] AvailableFontSizes {get; }  = new[] { 12, 24, 48, 64 };
-  public int TitleFontSize {get; set;} = 64;
-  public int ClockFontSize {get ; set;} = 48;
-  public bool BlinkColons {get; set;} = true;
-  public string FontColor {get; set;} = "black";
+  [Required]
+  public int TitleFontSize {get; set;} 
+  [Required]
+  public int ClockFontSize {get ; set;} 
+  [Required]
+  public bool BlinkColons {get; set;}
+  [Required]
+  public string FontColor {get; set;} 
+  [Required]
   public string TitleText { get; set; }
+    [Required]
+
+    public string ClockFontColor { get; set; }
+
+    [Required]
+
+    public string TimeZone { get; set; }
 }
